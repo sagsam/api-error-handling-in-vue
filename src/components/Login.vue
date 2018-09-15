@@ -5,14 +5,14 @@
       <label for="username">        
         Username: 
       </label>
-      <input type="email" name="username">
+      <input type="email" name="username" v-model="form.username">
 
       <br>
 
       <label for="password">        
         Password: 
       </label>
-      <input type="password" name="password">
+      <input type="password" name="password" v-model="form.password">
 
       <br>
 
@@ -26,9 +26,20 @@
 
 export default {
   name: 'login',
+  data() {
+    return {
+      form: {
+        username: '',
+        password: ''
+      }
+    }
+  },
   methods: {
     async onSubmit(){
-      await $http.post('/auth/login/')
+      await $http.post('/auth/login/', this.form)
+              .then(response => {
+                console.log(response)
+              })
     }
   }
 }
