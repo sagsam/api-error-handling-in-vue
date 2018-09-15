@@ -1,7 +1,7 @@
 // axios instance
 import axios from 'axios'
 import qs from 'qs'
-
+import { getToken } from '@/utils/token'
 /**
  *
  * parse error response
@@ -37,6 +37,21 @@ const instance = axios.create({
         return qs.stringify(params, { indices: false })
     }
 })
+
+// request header
+instance.interceptors.request.use(async(config) => {
+    // Do something before request is sent
+
+    // const apiToken = sessionStorage.getItem('token')
+    // config.headers = { 'Custom-Header-IF-Exist': apiToken }
+    const token = await getToken()
+    if(token !=null) {
+        config.headers = { 'Authorization': `Token ${token}` }
+    }
+    return config
+  }, error => {
+    return Promise.reject(error)
+  })
 
 // response parse
 instance.interceptors.response.use((response) => {
