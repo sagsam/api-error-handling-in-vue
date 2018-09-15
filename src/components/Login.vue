@@ -17,7 +17,7 @@
       <br>
 
       <input type="submit" name="login" value="Login">
-      
+
     </form>  
   </div>
 </template>
@@ -27,8 +27,8 @@
 export default {
   name: 'login',
   methods: {
-    onSubmit(){
-      
+    async onSubmit(){
+      await $http.post('/auth/login/')
     }
   }
 }
