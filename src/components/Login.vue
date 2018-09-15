@@ -23,7 +23,7 @@
 </template>
 
 <script>
-
+import { setToken } from '@/utils/cookie'
 export default {
   name: 'login',
   data() {
@@ -37,8 +37,9 @@ export default {
   methods: {
     async onSubmit(){
       await $http.post('/auth/login/', this.form)
-              .then(response => {
-                console.log(response)
+              .then(data => {
+                setToken(data.token)
+                console.log(data)
               })
     }
   }
