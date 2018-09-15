@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { setToken } from '@/utils/cookie'
+import { setToken } from '@/utils/token'
 export default {
   name: 'login',
   data() {
