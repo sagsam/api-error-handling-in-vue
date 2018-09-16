@@ -2,12 +2,14 @@
 import axios from 'axios'
 import qs from 'qs'
 import { getToken } from '@/utils/token'
+import Errors from '@/Errors/'
 /**
  *
  * parse error response
  */
 function parseError (messages) {
     // error
+    console.log(messages)
     if (messages) {
       if (messages instanceof Array) {
         return Promise.reject({ messages: messages })
@@ -68,15 +70,15 @@ instance.interceptors.response.use((response) => {
             // Bad Request
             return parseError(error.response.data)
         }else if(error.response.status === 401){
-            return parseError('UnAuthorized')
+            return parseError({non_field_errors: ['UnAuthorized']})
         }else if(error.response.status === 404){
-            return parseError('API Route is Missing or Undefined')
+            return parseError({non_field_errors: ['API Route is Missing or Undefined']})
         }else if(error.response.status === 405){
-            return parseError('API Route Method Not Allowed')
+            return parseError({non_field_errors: ['API Route Method Not Allowed']})
         }else if(error.response.status === 422){
-            return parseError('Unprocessable Entity')
+            return parseError({non_field_errors: ['Unprocessable Entity']})
         }else if(error.response.status >= 500){
-            return parseError('Server Error')
+            return parseError({non_field_errors: ['Server Error']})
         }else {
             return parseError()
         }
