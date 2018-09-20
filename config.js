@@ -1,0 +1,1 @@
+export const { VUE_APP_ROOT_API } = process.env;
