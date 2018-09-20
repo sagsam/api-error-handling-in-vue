@@ -7,7 +7,7 @@
       <label for="username">        
         Username: 
       </label>
-      <input type="email" name="username" v-model="form.username">
+      <input type="email" name="username" v-model="form.username" v-error>
       <br>
       <span v-if="form.errors.has('username')" v-text="form.errors.get('username')"></span>
       <br>
