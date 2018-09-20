@@ -2,7 +2,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import { getToken } from '@/utils/token'
-import Errors from '@/Errors/'
+import { VUE_APP_ROOT_API } from '@/config';
 /**
  *
  * parse error response
@@ -34,7 +34,7 @@ function parseBody (response) {
 
 // Set config defaults when creating the instance
 const instance = axios.create({
-    baseURL: '//lperp.herokuapp.com/api/v1',
+    baseURL: VUE_APP_ROOT_API,
     paramsSerializer: function (params) {
         return qs.stringify(params, { indices: false })
     }
