@@ -91,7 +91,7 @@ export default class Form {
      */
     submit(requestType, url) {
         return new Promise((resolve, reject) => {
-            $http[requestType](url, this.data())
+            global.$http[requestType](url, this.data())
                 .then(response => {
                     this.onSuccess(response);
 
